@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ナンプレ (数独) - Webアプリ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧩 ナンプレ (数独)</h1>
+            <div class="game-controls">
+                <div class="difficulty-selection">
+                    <label for="difficulty">難易度:</label>
+                    <select id="difficulty">
+                        <option value="easy">簡単</option>
+                        <option value="medium" selected>普通</option>
+                        <option value="hard">難しい</option>
+                    </select>
+                </div>
+                <button id="new-game-btn" class="btn btn-primary">新しいゲーム</button>
+            </div>
+        </header>
+
+        <main>
+            <div class="game-area">
+                <div class="sudoku-board" id="sudoku-board">
+                    <!-- 9x9のグリッドがJavaScriptで生成されます -->
+                </div>
+                
+                <div class="game-info">
+                    <div class="info-section">
+                        <h3>操作方法</h3>
+                        <ul>
+                            <li>セルをクリックして選択</li>
+                            <li>1-9のキーまたはボタンで数字を入力</li>
+                            <li>Deleteキーまたはクリアボタンで消去</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-section">
+                        <h3>数字入力</h3>
+                        <div class="number-pad">
+                            <button class="number-btn" data-num="1">1</button>
+                            <button class="number-btn" data-num="2">2</button>
+                            <button class="number-btn" data-num="3">3</button>
+                            <button class="number-btn" data-num="4">4</button>
+                            <button class="number-btn" data-num="5">5</button>
+                            <button class="number-btn" data-num="6">6</button>
+                            <button class="number-btn" data-num="7">7</button>
+                            <button class="number-btn" data-num="8">8</button>
+                            <button class="number-btn" data-num="9">9</button>
+                        </div>
+                        <button id="clear-btn" class="btn btn-secondary">クリア</button>
+                    </div>
+                    
+                    <div class="info-section">
+                        <h3>ゲーム機能</h3>
+                        <button id="check-btn" class="btn btn-success">解答チェック</button>
+                        <button id="hint-btn" class="btn btn-info">ヒント</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="message-area">
+            <div id="message" class="message"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/sudoku.js') }}"></script>
+</body>
+</html>

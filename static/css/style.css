@@ -1,0 +1,348 @@
+/* ベーススタイル */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ヘッダー */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    color: #4a5568;
+    margin-bottom: 15px;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.game-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.difficulty-selection {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.difficulty-selection label {
+    font-weight: bold;
+    color: #4a5568;
+}
+
+.difficulty-selection select {
+    padding: 8px 12px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    background: white;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.difficulty-selection select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* ボタンスタイル */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.btn-secondary {
+    background: linear-gradient(45deg, #ed8936, #dd6b20);
+    color: white;
+    box-shadow: 0 4px 15px rgba(237, 137, 54, 0.4);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(237, 137, 54, 0.6);
+}
+
+.btn-success {
+    background: linear-gradient(45deg, #38a169, #2f855a);
+    color: white;
+    box-shadow: 0 4px 15px rgba(56, 161, 105, 0.4);
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(56, 161, 105, 0.6);
+}
+
+.btn-info {
+    background: linear-gradient(45deg, #3182ce, #2c5282);
+    color: white;
+    box-shadow: 0 4px 15px rgba(49, 130, 206, 0.4);
+}
+
+.btn-info:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(49, 130, 206, 0.6);
+}
+
+/* ゲームエリア */
+.game-area {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 30px;
+    align-items: start;
+}
+
+/* 数独ボード */
+.sudoku-board {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 2px;
+    background: #2d3748;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.sudoku-cell {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.sudoku-cell:hover {
+    background: #f7fafc;
+    transform: scale(1.05);
+}
+
+.sudoku-cell.selected {
+    background: #bee3f8;
+    border-color: #3182ce;
+    box-shadow: 0 0 0 2px #3182ce;
+}
+
+.sudoku-cell.given {
+    background: #edf2f7;
+    color: #2d3748;
+    font-weight: 900;
+}
+
+.sudoku-cell.user-input {
+    background: #e6fffa;
+    color: #065f46;
+}
+
+/* 3x3ボックスの境界線 */
+.sudoku-cell:nth-child(3n):not(:nth-child(9n)) {
+    border-right: 3px solid #2d3748;
+}
+
+.sudoku-cell:nth-child(n+19):nth-child(-n+27),
+.sudoku-cell:nth-child(n+46):nth-child(-n+54) {
+    border-bottom: 3px solid #2d3748;
+}
+
+/* ゲーム情報パネル */
+.game-info {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.info-section {
+    margin-bottom: 25px;
+}
+
+.info-section h3 {
+    color: #4a5568;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 5px;
+}
+
+.info-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.info-section li {
+    padding: 5px 0;
+    color: #718096;
+    position: relative;
+    padding-left: 20px;
+}
+
+.info-section li:before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: #667eea;
+    font-weight: bold;
+}
+
+/* 数字パッド */
+.number-pad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.number-btn {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #e2e8f0;
+    background: white;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #4a5568;
+}
+
+.number-btn:hover {
+    background: #f7fafc;
+    border-color: #cbd5e0;
+    transform: scale(1.05);
+}
+
+.number-btn:active {
+    transform: scale(0.95);
+}
+
+/* メッセージエリア */
+.message-area {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.message {
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    margin: 10px 0;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.message.success {
+    background: linear-gradient(45deg, #68d391, #38a169);
+    color: white;
+    box-shadow: 0 4px 15px rgba(104, 211, 145, 0.4);
+}
+
+.message.error {
+    background: linear-gradient(45deg, #fc8181, #e53e3e);
+    color: white;
+    box-shadow: 0 4px 15px rgba(252, 129, 129, 0.4);
+}
+
+.message.info {
+    background: linear-gradient(45deg, #90cdf4, #3182ce);
+    color: white;
+    box-shadow: 0 4px 15px rgba(144, 205, 244, 0.4);
+}
+
+.message.hint {
+    background: linear-gradient(45deg, #fbb6ce, #d53f8c);
+    color: white;
+    box-shadow: 0 4px 15px rgba(251, 182, 206, 0.4);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .game-area {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .sudoku-cell {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1rem;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .game-controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .container {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sudoku-cell {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+    
+    .number-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
