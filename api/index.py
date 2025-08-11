@@ -311,6 +311,10 @@ def root():
     from flask import redirect
     return redirect('/game/')
 
-# Vercel用のハンドラー
+# Vercel用のエクスポート
 def handler(request):
     return app(request.environ, lambda status, headers: None)
+
+# Vercelが自動的に認識するapp変数
+if __name__ == "__main__":
+    app.run(debug=False)
